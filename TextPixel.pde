@@ -20,7 +20,8 @@ public class TextPixel {
  }
  
  void display(int x, int y) {
+   textSize(4);
    fill(this.c);
-   text(this.text, x*20,y*20,20,20);
+   text(this.text, x*10,y*10,10,10);
  }
 }

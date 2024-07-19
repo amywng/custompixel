@@ -22,28 +22,27 @@ void setup() {
     r+=1;
   }
   
-  pixelArr = new TextPixel[30][20];
+  pixelArr = new TextPixel[600/10][(400-h)/10+1];
   indicesUsed = new ArrayList<Integer>();
-  frameRate(3);
+  frameRate(.5);
 }
 
 void draw() {
   //image(img, 0,h);
-  for (int y = 0;y<400;y+=20) {
-    for (int x = 0;x<600;x+=20) {
+  for (int y = 0;y<400-h;y+=10) {
+    for (int x = 0;x<600;x+=10) {
       int randIndex = (int) random(0,names.length);
       while (indicesUsed.contains(randIndex)) {
         randIndex = (int) random(0,names.length);
       }
       indicesUsed.add(randIndex);
-      pixelArr[x/20][y/20] = new TextPixel(names[randIndex], averageColor(x,y));
+      pixelArr[x/10][y/10] = new TextPixel(names[randIndex], averageColor(x,y));
     }
   }
   
   background(255);
   for (int y=0;y<pixelArr[0].length;y+=1) {
     for (int x=0;x<pixelArr.length;x+=1) {
-      
       pixelArr[x][y].display(x,y);
     }
   }
@@ -54,12 +53,12 @@ color averageColor(int col, int row) {
   int sumR=0;
   int sumG=0;
   int sumB=0;
-  for (int y=row;y<row+20;y+=1) {
-    for (int x=col;x<col+20;x+=1) {
+  for (int y=row;y<row+10;y+=1) {
+    for (int x=col;x<col+10;x+=1) {
       sumR+=red(img.get(x,y));
       sumG+=green(img.get(x,y));
       sumB+=blue(img.get(x,y));
     }
   }
-  return color(sumR/400, sumG/400, sumB/400);
+  return color(sumR/100, sumG/100, sumB/100);
 }
