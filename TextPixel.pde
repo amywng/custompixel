@@ -19,13 +19,9 @@ public class TextPixel {
    }
  }
  
- void display(int x, int y, int textSize) {
+ void display(float x, float y, int textSize) {
    textSize(textSize);
    fill(this.c);
-   if (y==0) {
-   } else {
-     text(this.text, (x-1)*(textSize),(y+.3)*(textSize));
-   }
-   
+   text(this.text, (x-1)*textSize,y*textSize);
  }
 }
